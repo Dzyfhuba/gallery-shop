@@ -15,7 +15,12 @@
         "sourceType": "module"
     },
     "overrides": [
-        "src/**/*.{js,jsx}",
+        {
+            "files": ["src/**/*.{js, jsx}"],
+            "excludedFiles": [
+                "*.config.js"
+            ]
+        }
     ],
     "plugins": [
         "react"

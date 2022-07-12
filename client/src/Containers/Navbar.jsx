@@ -4,22 +4,18 @@ import Logo from '../Images/logo.png'
 
 const Navbar = () => {
   return (
-    <nav>
-        <Link to={'/'}>
-            <img src={Logo} alt="logo" />
-        </Link>
+    <nav className='h-16 bg-secondary flex'>
+        <div className="h-full">
+            <Link to={'/'} className='h-full'>
+                <img src={Logo} alt="logo" className='object-cover h-full'/>
+            </Link>
+        </div>
 
-        <ul>
-            <li>
-                <NavLink to={'/'}>Jasa</NavLink>
-            </li>
-            <li>
-                <NavLink to={'/'}>Artikel</NavLink>
-            </li>
-            <li>
-                <NavLink to={'/'}>Kontak Kami</NavLink>
-            </li>
-        </ul>
+        <div className='flex items-center'>
+            <NavLink to={'/'}>Jasa</NavLink>
+            <NavLink to={'/'}>Artikel</NavLink>
+            <NavLink to={'/'}>Kontak Kami</NavLink>
+        </div>
     </nav>
   )
 }
