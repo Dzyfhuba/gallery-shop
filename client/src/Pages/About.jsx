@@ -1,9 +1,18 @@
 import React from 'react'
+import Navbar from '../Containers/Navbar'
 
 const About = () => {
-  return (
-    <div>About</div>
-  )
+	return (
+		<>
+			<header>
+				<Navbar />
+			</header>
+			<main className='min-h-screen bg-primary'>
+  
+			</main>
+			
+		</>
+	)
 }
 
 export default About

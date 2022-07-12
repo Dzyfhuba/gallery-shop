@@ -13,13 +13,13 @@ const Navbar = () => {
 			</div>
 
 			<div className='flex items-center gap-3 '>
-				<NavLink to={'/'} className='h-full flex justify-center items-center font-black w-[100px]
+				<NavLink to={'/service'} className='h-full flex justify-center items-center font-black w-[100px]
             hover:text-neutral-700 transition duration-300 ease-in-out
             '>Jasa</NavLink>
-				<NavLink to={'/'} className='h-full flex justify-center items-center font-black w-[100px]
+				<NavLink to={'/article'} className='h-full flex justify-center items-center font-black w-[100px]
             hover:text-neutral-700 transition duration-300 ease-in-out
             '>Artikel</NavLink>
-				<NavLink to={'/'} className='h-full flex justify-center items-center font-black w-[100px]
+				<NavLink to={'/about'} className='h-full flex justify-center items-center font-black w-[100px]
             hover:text-neutral-700 transition duration-300 ease-in-out
             '>Kontak Kami</NavLink>
 			</div>
