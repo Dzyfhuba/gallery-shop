@@ -44,12 +44,24 @@ export default class AuthController {
         })
       }
 
-      const { email, password } = request.body()
+      const { username, email, password } = request.body()
 
-      const user = await User
-        .query()
-        .where('email', email)
-        .firstOrFail()
+      let user = {
+        password: '',
+      }
+      if(email){
+        user = await User
+          .query()
+          .where('email', email)
+          .firstOrFail()
+      }
+
+      if (username) {
+        user = await User
+          .query()
+          .where('username', username)
+          .firstOrFail()
+      }
 
       if (!(await Hash.verify(user.password, password))) {
         return response.unauthorized('Invalid credentials')
