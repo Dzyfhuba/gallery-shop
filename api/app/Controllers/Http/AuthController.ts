@@ -15,7 +15,7 @@ export default class AuthController {
 
       body.password = await Hash.make(body.password)
 
-      const user = await Database.table('users').insert(body)
+      await Database.table('users').insert(body)
 
       return response.send({
         error: false,
@@ -34,7 +34,17 @@ export default class AuthController {
 
   public async login ({auth, request, response}) {
     try {
-      const {username, email, password, rememberMe} = request.body()
+      await auth.use('api').check()
+
+      if (auth.use('api').isLoggedIn) {
+        return response.send({
+          error: false,
+          status: 'success',
+          message: 'You have logged in',
+        })
+      }
+
+      const { email, password } = request.body()
 
       const user = await User
         .query()
@@ -56,5 +66,14 @@ export default class AuthController {
     } catch (e) {
       return response.send(e)
     }
+  }
+
+  public async logout ({auth, response}) {
+    await auth.use('api').revoke()
+    return response.send({
+      error: false,
+      status: 'success',
+      message: 'Logout has successfully',
+    })
   }
 }
