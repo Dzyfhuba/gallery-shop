@@ -4,17 +4,22 @@ import Cookies from 'universal-cookie'
 const Authentication = async () => {
 	const cookie = new Cookies()
 
+	console.log(localStorage.getItem('user'))
+	console.log(cookie.get('token'))
 	const config = {}
-	if (!(cookie.get('auth').includes('undefined') || cookie.get('auth'))) {
-		config.headers = {
-			'Authorization': `Bearer ${cookie.auth}`
-		}
-		const user = await axios.get('http://localhost:3333/auth/check', config)
-			.then(res => res.data.user)
-			.catch(err => console.log(err))
-		return user
+
+	config.headers = {
+		'Authorization': `Bearer ${cookie.get('token')}`
 	}
-	return null
+	const user = await axios.get('http://localhost:3333/auth/check', {
+		headers:{
+			'Authorization': `Bearer ${cookie.get('token')}`
+		}
+	})
+		.then(res => res.data.user)
+		.catch(err => console.log(err))
+	console.log(user)
+	return user
 }
 
 export default Authentication

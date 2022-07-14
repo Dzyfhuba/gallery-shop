@@ -10,7 +10,7 @@ import Input from '../Components/Input'
 const Login = () => {
 	const [email, setEmail] = useState(String)
 	const [password, setPassword] = useState(String)
-	const [cookie, setCookie] = useCookies(['auth'])
+	const [cookie, setCookie] = useCookies(['token'])
 	const navigate = useNavigate()
 
 	const handleChangeEmail = e => setEmail(e.target.value)
@@ -18,7 +18,7 @@ const Login = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault()
-		console.log(cookie.auth)
+		console.log(cookie.token)
 		const data = {
 			email,
 			password
@@ -26,16 +26,21 @@ const Login = () => {
 
 		axios.post('http://localhost:3333/login', data, {
 			headers: {
-				'Authorization': `Bearer ${cookie.auth}`
+				'Authorization': `Bearer ${cookie.token}`
 			},
 		})
 			.then(res => {
 				console.log(res.data)
 				if(res.data.status == 'success') {
 					swal('Success', res.data.message, res.data.status)
-						.then(setCookie('token', res.data.token.token))
-						.then(console.log(cookie.auth))
-						.then(navigate('/'))
+						.then(() => {
+							setCookie('token', res.data.token.token)
+							localStorage.setItem('user', JSON.stringify(res.data.user))
+						})
+						.then(console.log(cookie.token))
+						.then(() => {
+							window.location.href = '/'
+						})
 				} else if(res.data.status == 'warning') {
 					swal('Warning', res.data.message, res.data.status)
 						.then(navigate('/'))

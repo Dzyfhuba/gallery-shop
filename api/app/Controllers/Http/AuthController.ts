@@ -84,6 +84,7 @@ export default class AuthController {
         error: false,
         status: 'success',
         message: 'Login has successfully',
+        user,
         auth,
         token,
       })
