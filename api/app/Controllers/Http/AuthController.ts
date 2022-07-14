@@ -34,12 +34,12 @@ export default class AuthController {
 
   public async login ({auth, request, response}) {
     try {
-      await auth.use('api').check()
+      await auth.use('api').authenticate()
 
-      if (auth.use('api').isLoggedIn) {
+      if (auth.use('api').user!) {
         return response.send({
           error: false,
-          status: 'success',
+          status: 'warning',
           message: 'You have logged in',
         })
       }
@@ -63,6 +63,13 @@ export default class AuthController {
           .firstOrFail()
       }
 
+      if (!Object.keys(user).length) {
+        return response.send({
+          error: true,
+          status: 'error',
+          message: 'Login has failed',
+        })
+      }
       if (!(await Hash.verify(user.password, password))) {
         return response.unauthorized('Invalid credentials')
       }
@@ -73,10 +80,16 @@ export default class AuthController {
         error: false,
         status: 'success',
         message: 'Login has successfully',
+        auth,
         token,
       })
     } catch (e) {
-      return response.send(e)
+      return response.send({
+        error: true,
+        status: 'error',
+        message: 'Login has failed',
+        e,
+      })
     }
   }
 
