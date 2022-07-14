@@ -1,23 +1,14 @@
 import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-// import ButtonAnchor from '../Components/ButtonAnchor'
 import Logo from '../Images/logo.png'
 import Button from '../Components/Button'
 import anime from 'animejs'
+import PropTypes from 'prop-types'
+import ButtonAnchor from '../Components/ButtonAnchor'
+import Logout from '../Components/Logout'
 
-const Navbar = () => {
+const Navbar = props => {
 	const [sidebarShow, setSidebarShow] = useState(false)
-
-	// const sidebarShowToggle = async (show) => {
-	// 	if (show)
-	// 		await setSidebarShow(false)
-	// 	else 
-	// 		await setSidebarShow(true)
-	// }
-
-	// const sidebarShow = () => {
-		
-	// }
 
 	const handleSidebarShow = (show) => {
 		// const sidebar = document.querySelector('#sidebar_body')
@@ -95,12 +86,24 @@ const Navbar = () => {
 						leading-8
 						text-neutral-900 hover:text-neutral-500 hover:shadow-lg transition duration-300 ease-in-out
 						'>Kontak Kami</NavLink>
-						{/* <ButtonAnchor to={'/login'}>Login</ButtonAnchor> */}
+						{props.auth ? 
+							(
+								<Logout />
+							) 
+							: 
+							(
+								<ButtonAnchor to={'/login'}>Login</ButtonAnchor>
+							)
+						}
 					</div>
 				</div>
 			</div>
 		</nav>
 	)
+}
+
+Navbar.propTypes = {
+	auth: PropTypes.any
 }
 
 export default Navbar

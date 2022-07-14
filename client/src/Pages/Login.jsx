@@ -31,9 +31,9 @@ const Login = () => {
 		})
 			.then(res => {
 				console.log(res.data)
-				if(!res.data.status == 'success') {
+				if(res.data.status == 'success') {
 					swal('Success', res.data.message, res.data.status)
-						.then(setCookie(res.data.token))
+						.then(setCookie('token', res.data.token.token))
 						.then(console.log(cookie.auth))
 						.then(navigate('/'))
 				} else if(res.data.status == 'warning') {
@@ -43,6 +43,7 @@ const Login = () => {
 					swal('Failed', res.data.message, res.data.status)
 				}
 			})
+			.catch(err => console.log(err))
 
 		console.log(data)
 	}

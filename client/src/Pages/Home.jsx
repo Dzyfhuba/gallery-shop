@@ -1,15 +1,12 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Navbar from '../Containers/Navbar'
+import PropTypes from 'prop-types'
 
-const Home = () => {
-	useEffect(() => {
-		axios.get('http://localhost:3333').then(response => console.log(response.data))
-	}, [])
+const Home = props => {
 	return (
 		<>
 			<header>
-				<Navbar />
+				<Navbar auth={props.auth} />
 			</header>
 			<main className='min-h-screen bg-primary'>
 
@@ -17,6 +14,10 @@ const Home = () => {
 			
 		</>
 	)
+}
+
+Home.propTypes = {
+	auth: PropTypes.any
 }
 
 export default Home

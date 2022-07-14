@@ -34,9 +34,9 @@ export default class AuthController {
 
   public async login ({auth, request, response}) {
     try {
-      await auth.use('api').authenticate()
+      await auth.use('api').check()
 
-      if (auth.use('api').user!) {
+      if (auth.use('api').isLoggedIn) {
         return response.send({
           error: false,
           status: 'warning',
@@ -71,7 +71,11 @@ export default class AuthController {
         })
       }
       if (!(await Hash.verify(user.password, password))) {
-        return response.unauthorized('Invalid credentials')
+        return response.send({
+          error: true,
+          status: 'error',
+          message: 'Login has failed',
+        })
       }
 
       const token = await auth.use('api').generate(user)
@@ -99,6 +103,25 @@ export default class AuthController {
       error: false,
       status: 'success',
       message: 'Logout has successfully',
+    })
+  }
+
+  public async authCheck ({auth, response}) {
+    await auth.use('api').authenticate()
+
+    if (auth.use('api').user!) {
+      return response.send({
+        error: false,
+        status: 'success',
+        message: 'You have logged in',
+        user: auth.use('api').user,
+      })
+    }
+
+    return response.send({
+      status: 'error',
+      error: true,
+      message: 'You are not logged in',
     })
   }
 }

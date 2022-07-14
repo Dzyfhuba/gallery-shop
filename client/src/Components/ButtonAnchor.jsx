@@ -8,6 +8,14 @@ export default class ButtonAnchor extends Component {
 		to: PropTypes.string,
 		children: PropTypes.string,
 		className: PropTypes.string,
+		method: PropTypes.string
+	}
+
+	static defaultProps = {
+		to: null,
+		children: null,
+		className: null,
+		method: 'get'
 	}
 
 	render() {
