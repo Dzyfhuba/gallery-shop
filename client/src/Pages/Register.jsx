@@ -49,7 +49,7 @@ const Register = () => {
 
 	return (
 		<main className='min-h-screen bg-primary flex items-center justify-center'>
-			<div className="bg-secondary p-5 rounded-xl">
+			<div className="bg-secondary p-5 rounded-xl text-neutral-100">
 				<form onSubmit={handleSubmit}>
 					<Input name={'name'} label='Nama' placeholder={'Masukkan Nama'} 
 						onChange={handleChangeName}

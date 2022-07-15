@@ -63,7 +63,7 @@ const Navbar = props => {
 					) 
 					: 
 					(
-						<ButtonAnchor to={'/login'}>Login</ButtonAnchor>
+						<ButtonAnchor to={'/login'} className='bg-transparent'>Login</ButtonAnchor>
 					)
 				}
 			</div>

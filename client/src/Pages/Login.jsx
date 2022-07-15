@@ -55,7 +55,7 @@ const Login = () => {
 
 	return (
 		<main className='min-h-screen bg-primary flex items-center justify-center'>
-			<div className="bg-secondary p-5 rounded-xl">
+			<div className="bg-secondary p-5 rounded-xl text-neutral-100">
 				<form onSubmit={handleSubmit}>
 					<Input name={'email'} label='Email' placeholder={'Masukkan Email1'} onChange={handleChangeEmail} required/>
 					<Input name={'password'} label='Password' type='password' placeholder={'Masukkan Password'} onChange={handleChangePassword} required/>
