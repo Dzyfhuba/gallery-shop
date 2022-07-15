@@ -8,7 +8,6 @@ const index = () => {
 	useEffect(() => {
 		Authentication().then(res => setUser(res))
 	}, [])
-	console.log(user)
 	return (
 		<Router>
 			<Routes>

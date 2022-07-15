@@ -4,8 +4,6 @@ import Cookies from 'universal-cookie'
 const Authentication = async() => {
 	const cookie = new Cookies()
 
-	console.log(localStorage.getItem('user'))
-	console.log(cookie.get('token'))
 	const config = {}
 
 	config.headers = {
@@ -18,7 +16,6 @@ const Authentication = async() => {
 	})
 		.then(res => res.data.user)
 		.catch(err => console.log(err))
-	console.log(user)
 	return user
 }
 
