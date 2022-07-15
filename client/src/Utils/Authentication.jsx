@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Cookies from 'universal-cookie'
 
-const Authentication = async () => {
+const Authentication = async() => {
 	const cookie = new Cookies()
 
 	console.log(localStorage.getItem('user'))
@@ -12,7 +12,7 @@ const Authentication = async () => {
 		'Authorization': `Bearer ${cookie.get('token')}`
 	}
 	const user = await axios.get('http://localhost:3333/auth/check', {
-		headers:{
+		headers: {
 			'Authorization': `Bearer ${cookie.get('token')}`
 		}
 	})

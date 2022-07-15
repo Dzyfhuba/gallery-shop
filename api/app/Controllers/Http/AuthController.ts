@@ -21,11 +21,12 @@ export default class AuthController {
         error: false,
         status: 'success',
         message: 'Register has successfully',
+        body,
       })
     } catch (e){
       return response.send({
         error: true,
-        status: 'failed',
+        status: 'error',
         message: 'Registration has failed',
         errorMessage: e,
       })
@@ -108,21 +109,30 @@ export default class AuthController {
   }
 
   public async authCheck ({auth, response}) {
-    await auth.use('api').authenticate()
+    try {
+      await auth.use('api').authenticate()
 
-    if (auth.use('api').user!) {
+      if (auth.use('api').user!) {
+        return response.send({
+          error: false,
+          status: 'success',
+          message: 'You have logged in',
+          user: auth.use('api').user,
+        })
+      }
+
       return response.send({
-        error: false,
-        status: 'success',
-        message: 'You have logged in',
-        user: auth.use('api').user,
+        status: 'error',
+        error: true,
+        message: 'You are not logged in',
+      })
+    } catch (e) {
+      return response.send({
+        status: 'error',
+        error: true,
+        message: 'Somethings bad is happen',
+        e,
       })
     }
-
-    return response.send({
-      status: 'error',
-      error: true,
-      message: 'You are not logged in',
-    })
   }
 }
