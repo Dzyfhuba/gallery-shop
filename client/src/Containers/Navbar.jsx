@@ -54,7 +54,12 @@ const Navbar = props => {
             	'>Kontak Kami</NavLink>
 				{props.auth ? 
 					(
-						<Logout className={'bg-transparent h-full'} />
+						<>
+							<NavLink to={'/admin'} className='h-full flex justify-center items-center font-black w-[120px]
+								hover:text-neutral-700 transition duration-300 ease-in-out'
+							>Admin</NavLink>
+							<Logout className={'bg-transparent h-full'} />
+						</>
 					) 
 					: 
 					(
