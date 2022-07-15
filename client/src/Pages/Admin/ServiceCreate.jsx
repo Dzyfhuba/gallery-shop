@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Input from '../../Components/Input'
 import SimpleMdeReact from 'react-simplemde-editor'
 import "easymde/dist/easymde.min.css";
+import GDrive2Embed from '../../Components/GDrive2Embed'
 
 const ServiceCreate = props => {
 	const [title, setTitle] = useState(String)
@@ -42,6 +43,7 @@ const ServiceCreate = props => {
 					/>
 				</form>
 			</main>
+			<GDrive2Embed />
 		</>
 	)
 }
