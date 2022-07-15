@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Home, Login, Register, Service, Article, About, AdminService } from '../Pages'
+import { Home, Login, Register, Service, Article, About, AdminService, AdminArticle, AdminAbout } from '../Pages'
 import Authentication from '../Utils/Authentication'
 
 const index = () => {
@@ -20,9 +20,10 @@ const index = () => {
 				<Route path={'/service'} element={<Service />} />
 				<Route path={'/article'} element={<Article/>} />
 				<Route path={'/about'} element={<About/>} />
-				<Route path={'/admin'} element={<AdminService auth={user} />}>
-					<Route path={'service'} element={<AdminService />} />
-				</Route>
+				<Route path={'/admin'} element={<AdminService auth={user} />} />
+				<Route path={'/admin/service'} element={<AdminService auth={user} />} />
+				<Route path={'/admin/article'} element={<AdminArticle auth={user} />} />
+				<Route path={'/admin/about'} element={<AdminAbout auth={user} />} />
 			</Routes>
 		</Router>
 	)
