@@ -3,10 +3,10 @@ import axios from 'axios'
 import React from 'react'
 import { useCookies } from 'react-cookie'
 import swal from 'sweetalert'
-// import swal from 'sweetalert'
+import PropTypes from 'prop-types'
 import Button from './Button'
 
-const Logout = () => {
+const Logout = props => {
 	const [cookie, removeCookie] = useCookies()
     
 	const handleSubmit = (e) => {
@@ -27,9 +27,13 @@ const Logout = () => {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<Button type='submit'>Logout</Button>
+			<Button type='submit' className={props.className}>Logout</Button>
 		</form>
 	)
+}
+
+Logout.propTypes = {
+	className: PropTypes.string
 }
 
 export default Logout

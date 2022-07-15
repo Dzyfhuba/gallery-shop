@@ -52,8 +52,16 @@ const Navbar = props => {
 				<NavLink to={'/about'} className='h-full flex justify-center items-center font-black w-[120px]
             	hover:text-neutral-700 transition duration-300 ease-in-out
             	'>Kontak Kami</NavLink>
+				{props.auth ? 
+					(
+						<Logout className={'bg-transparent h-full'} />
+					) 
+					: 
+					(
+						<ButtonAnchor to={'/login'}>Login</ButtonAnchor>
+					)
+				}
 			</div>
-			{/* <ButtonAnchor to={'/login'}>Login</ButtonAnchor> */}
 			<Button onClick={() => handleSidebarShow(true)} className={`block md:hidden`}>
 				<span className="material-symbols-rounded">
 					menu
