@@ -1,9 +1,11 @@
 import anime from 'animejs'
 import React, { useState } from 'react'
 import Button from './Button'
+import Input from './Input'
 
 const GDrive2Embed = () => {
-	const [show, setShow] = useState(Boolean)
+	const [, setShow] = useState(Boolean)
+	const [result, setResult] = useState(String)
 
 	const handleShow = async (enable) => {
 		const modal = document.querySelector('#modal')
@@ -12,22 +14,14 @@ const GDrive2Embed = () => {
 			modal.classList.add('fixed')
 			anime({
 				targets: '#modal',
-				width: '400px',
+				width: '60vw',
+				maxHeight: '50vh',
 				right: '88px',
 				bottom: '88px',
 				duration: 500
 			})
-			setTimeout(() => {
-				const content = document.querySelector('#modal #close')
-				content.classList.remove('hidden')
-				content.classList.add('inline')
-				console.log(content.classList)
-			}, 500);
 			setShow(enable)
 		} else {
-			const content = document.querySelector('#modal #close')
-			content.classList.remove('inline')
-			content.classList.add('hidden')
 			anime({
 				targets: '#modal',
 				width: '4px',
@@ -41,21 +35,52 @@ const GDrive2Embed = () => {
 			}, 500);
 			setShow(enable)
 		}
-		console.log(show)
+		// console.log(show)
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		const original = e.target.querySelector('[name="original"]').value
+		const id = original.replace('https://drive.google.com/file/d/', '').replace('/view?usp=sharing', '')
+		setResult('https://drive.google.com/uc?export=view&id='+id)
+		e.target.reset()
+	}
+
+	const copyResult = (e) => {
+		navigator.clipboard.writeText(result)
+		anime({
+			targets: `#${e.target.getAttribute('id')}`,
+			backgroundColor: ['rgb(0,255,0)', 'rgb(109, 139, 116)'],
+			easing: 'easeInOutCirc',
+		})
 	}
 
 	return (
 		<>
 			<div id='modal' className={`hidden bottom-4 right-4 bg-primary 
-            border shadow-xl rounded-lg w-1 aspect-square z-20`}>
-				<div id="head" className='text-right w-full'>
-					<button id='close' className='hidden p-1 aspect-square'
+            border border-neutral-400 shadow-xl rounded-lg w-1 aspect-square z-20 p-3`}>
+				<div id="head" className='w-full flex justify-between'>
+					<h1>Convert GD Link to Embedable URL</h1>
+					<button id='close' className='p-1 aspect-square'
 						onClick={() => handleShow(false)}
 					>
 						<span className="material-symbols-rounded">
                         close
 						</span>
 					</button>
+				</div>
+				<div id="body">
+					<form onSubmit={handleSubmit}>
+						<Input name='original' label='Google Drive Image URL'
+							placeholder='https://drive.google.com/file/d/.../view?usp=sharing'
+							required
+						/>
+						<Button type='submit' className='w-full bg-ternary'>
+							Convert&#160;<span className="material-symbols-rounded">vertical_align_bottom</span>
+						</Button>
+					</form>
+					<Input name='result' label='Result' value={result} readOnly/>
+					<Button className='bg-ternary w-full' onClick={copyResult} id='copyResult'>Copy The Result</Button>
 				</div>
 			</div>
 			<Button 
