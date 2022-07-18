@@ -29,5 +29,5 @@ Route.post('/login', 'AuthController.login')
 Route.post('/logout', 'AuthController.logout')
 Route.get('/auth/check', 'AuthController.authCheck')
 
-Route.get('/articles', 'ArticlesController.all')
-Route.post('/articles', 'ArticlesController.store')
+Route.get('/article', 'ArticlesController.all')
+Route.post('/article', 'ArticlesController.store')

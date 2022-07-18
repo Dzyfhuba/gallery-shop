@@ -41,11 +41,11 @@ const ServiceCreate = props => {
 		}
 		console.log(data)
 
-		axios.post(`${Hosts.main}/service`, data)
+		axios.post(`${Hosts.main}/article`, data)
 			.then(res => {
 				if (!res.data.error) {
 					swal('Success', res.data.message, 'success')
-						.then(navigate('/admin/service'))
+						.then(navigate('/admin/article'))
 				} else {
 					swal('Failed', res.data.message, 'error')
 					console.log(res.data.e)
@@ -60,7 +60,7 @@ const ServiceCreate = props => {
 				<AdminNavbar />
 			</header>
 			<main className='pt-32 min-h-screen bg-primary md:px-24 px-4'>
-				<h1 className='text-4xl font-black mb-3'>Admin: Service Page Create</h1>
+				<h1 className='text-4xl font-black mb-3'>Admin: Article Page Create</h1>
 				<form onSubmit={handleSubmit}>
 					<div className="flex justify-end"><Button type='submit'>Submit</Button></div>
 					<Input label='Title' name='title' type='text' onChange={handleChangeTitle} required/>
