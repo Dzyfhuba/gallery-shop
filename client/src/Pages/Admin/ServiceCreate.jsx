@@ -9,11 +9,15 @@ import GDrive2Embed from '../../Components/GDrive2Embed'
 
 const ServiceCreate = props => {
 	const [title, setTitle] = useState(String)
-	const [images, setImage] = useState(String)
+	const [images, setImage] = useState(Array)
+	// const [preview, setPreview] = useState()
 	const [markdownValue, setMarkdownValue] = useState('Initial value')
 
 	const handleChangeTitle = e => setTitle(e.target.value)
-	const handleChangeImage = e => setImage(e.target.value)
+	const handleChangeImage = e => {
+		const imagesURL = e.target.value
+		setImage(imagesURL.split(';'))
+	}
 	const handleChangeMarkdown = useCallback((value) => {
 		console.log(value)
 		setMarkdownValue(value)
@@ -37,6 +41,12 @@ const ServiceCreate = props => {
 				<form onSubmit={handleSubmit}>
 					<Input label='Title' name='title' type='text' onChange={handleChangeTitle} />
 					<Input label='Images' name='image' type='text' onChange={handleChangeImage} />
+					<div id="preview" className='flex gap-1'>
+						{images.map((image, key) => <img 
+							src={image} key={key} 
+							className='h-14'
+						/>)}
+					</div>
 					<SimpleMdeReact 
 						onChange={handleChangeMarkdown} 
 						value={markdownValue}

@@ -131,7 +131,7 @@ export default class AuthController {
         status: 'error',
         error: true,
         message: 'Somethings bad is happen',
-        e,
+        e ,
       })
     }
   }
