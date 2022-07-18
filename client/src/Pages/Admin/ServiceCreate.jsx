@@ -6,6 +6,7 @@ import Input from '../../Components/Input'
 import SimpleMdeReact from 'react-simplemde-editor'
 import "easymde/dist/easymde.min.css";
 import GDrive2Embed from '../../Components/GDrive2Embed'
+import Textarea from '../../Components/Textarea'
 
 const ServiceCreate = props => {
 	const [title, setTitle] = useState(String)
@@ -40,7 +41,7 @@ const ServiceCreate = props => {
 				<h1 className='text-4xl font-black mb-3'>Admin: Service Page Create</h1>
 				<form onSubmit={handleSubmit}>
 					<Input label='Title' name='title' type='text' onChange={handleChangeTitle} />
-					<Input label='Images' name='image' type='text' onChange={handleChangeImage} />
+					<Textarea label='Images' name='image' type='text' onChange={handleChangeImage} />
 					<div id="preview" className='flex gap-1'>
 						{images.map((image, key) => <img 
 							src={image} key={key} 
