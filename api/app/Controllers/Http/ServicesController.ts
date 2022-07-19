@@ -1,0 +1,48 @@
+// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
+import Service from 'App/Models/Service'
+
+export default class ServicesController {
+  public async all ({response}) {
+    try {
+      const services = await Service.all()
+
+      return response.send({
+        error: false,
+        status: 'success',
+        data: services,
+      })
+    } catch (error) {
+      return response.send({
+        error: true,
+        status: 'error',
+        data: error,
+      })
+    }
+  }
+
+  public async store ({request, response}) {
+    try {
+      const data = request.body()
+
+      data.images = JSON.stringify(data.images)
+      data.content = JSON.stringify(data.content)
+
+      const service = await Service.create(data)
+
+      return response.send({
+        error: false,
+        status: 'success',
+        message: 'Article has been added',
+        data: service,
+      })
+    } catch (error) {
+      return response.send({
+        error: true,
+        status: 'error',
+        message: 'Service has been failed to add',
+        data: error,
+      })
+    }
+  }
+}
