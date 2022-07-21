@@ -34,3 +34,4 @@ Route.post('/article', 'ArticlesController.store')
 
 Route.get('/service', 'ServicesController.all')
 Route.post('/service', 'ServicesController.store')
+Route.delete('/service/:id', 'ServicesController.destroy')

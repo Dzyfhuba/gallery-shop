@@ -45,4 +45,24 @@ export default class ServicesController {
       })
     }
   }
+
+  public async destroy ({request, response}) {
+    try {
+      const {id} = request.params()
+      const service = await Service.findOrFail(id)
+      await service?.delete()
+
+      return response.send({
+        error: false,
+        status: 'success',
+        data: service,
+      })
+    } catch (error) {
+      return response.send({
+        error: true,
+        status: 'error',
+        data: error,
+      })
+    }
+  }
 }
