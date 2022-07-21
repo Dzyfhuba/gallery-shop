@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Home, Login, Register, Service, Article, About, AdminService, AdminArticle, AdminAbout, AdminServiceCreate, AdminArticleCreate } from '../Pages'
+import { Home, Login, Register, Service, Article, About, AdminService, AdminArticle, AdminAbout, AdminServiceCreate, AdminArticleCreate, AdminServiceEdit, AdminArticleEdit } from '../Pages'
 import Authentication from '../Utils/Authentication'
 
 const index = () => {
@@ -22,8 +22,10 @@ const index = () => {
 				<Route path={'/admin'} element={<AdminService auth={user} />} />
 				<Route path={'/admin/service'} element={<AdminService auth={user} />} />
 				<Route path={'/admin/service/create'} element={<AdminServiceCreate auth={user} />} />
+				<Route path={'/admin/service/:id/edit'} element={<AdminServiceEdit auth={user} />} />
 				<Route path={'/admin/article'} element={<AdminArticle auth={user} />} />
 				<Route path={'/admin/article/create'} element={<AdminArticleCreate auth={user} />} />
+				<Route path={'/admin/article/:id/edit'} element={<AdminArticleEdit auth={user} />} />
 				<Route path={'/admin/about'} element={<AdminAbout auth={user} />} />
 			</Routes>
 		</Router>

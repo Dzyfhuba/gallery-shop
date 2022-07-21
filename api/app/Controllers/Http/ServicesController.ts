@@ -65,4 +65,23 @@ export default class ServicesController {
       })
     }
   }
+
+  public async edit ({request, response}) {
+    try {
+      const { id } = request.params()
+      const service = await Service.findOrFail(id)
+      // service.images = service.images
+      return response.send({
+        error: false,
+        status: 'success',
+        data: service,
+      })
+    } catch (error) {
+      return response.send({
+        error: true,
+        status: 'error',
+        data: error,
+      })
+    }
+  }
 }
