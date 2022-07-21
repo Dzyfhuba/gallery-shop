@@ -50,7 +50,7 @@ export default class ServicesController {
     try {
       const {id} = request.params()
       const service = await Service.findOrFail(id)
-      await service?.delete()
+      await service.delete()
 
       return response.send({
         error: false,
