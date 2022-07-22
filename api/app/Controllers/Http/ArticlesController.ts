@@ -45,24 +45,4 @@ export default class ArticlesController {
       })
     }
   }
-
-  public async destroy ({request, response}) {
-    try {
-      const {id} = request.params()
-      const service = await Article.findOrFail(id)
-      await service.delete()
-
-      return response.send({
-        error: false,
-        status: 'success',
-        data: service,
-      })
-    } catch (error) {
-      return response.send({
-        error: true,
-        status: 'error',
-        data: error,
-      })
-    }
-  }
 }
