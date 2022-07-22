@@ -72,7 +72,7 @@ const Service = props => {
 								{
 									Object.keys(services[0] ? services[0] : '').map((item, i) => (!hiddenColumns.includes(i)) ? <th className='border border-neutral-900 p-3' key={i}>{item}</th> : '')
 								}
-								<th className='border border-neutral-900 p-3'>edit</th>
+								<th className='border border-neutral-900 p-3'>open</th>
 								<th className='border border-neutral-900 p-3'>delete</th>
 							</tr>
 						</thead>
@@ -81,7 +81,7 @@ const Service = props => {
 								<tr key={service.id}>
 									{Object.values(service).map((cell, i) => (!hiddenColumns.includes(i)) ?  <td className='border border-neutral-900 p-3' key={i}>{cell}</td> : '')}
 									<td className='border border-neutral-900 p-3'>
-										<ButtonAnchor to={`/admin/service/${service.id}/edit`}>Edit</ButtonAnchor>
+										<ButtonAnchor to={`/service/${service.slug}`}>Open</ButtonAnchor>
 									</td>
 									<td className='border border-neutral-900 p-3'>
 										<Button className='w-full bg-ternary' onClick={() => deleteEvent(service.id)}>Delete</Button>

@@ -21,6 +21,25 @@ export default class ServicesController {
     }
   }
 
+  public async show ({request, response}) {
+    try {
+      const { id } = request.params()
+      const service = await Service.findOrFail(id)
+
+      return response.send({
+        error: false,
+        status: 'success',
+        data: service,
+      })
+    } catch (error) {
+      return response.send({
+        error: true,
+        status: 'error',
+        data: error,
+      })
+    }
+  }
+
   public async store ({request, response}) {
     try {
       const data = request.body()
@@ -52,25 +71,6 @@ export default class ServicesController {
       const service = await Service.findOrFail(id)
       await service?.delete()
 
-      return response.send({
-        error: false,
-        status: 'success',
-        data: service,
-      })
-    } catch (error) {
-      return response.send({
-        error: true,
-        status: 'error',
-        data: error,
-      })
-    }
-  }
-
-  public async edit ({request, response}) {
-    try {
-      const { id } = request.params()
-      const service = await Service.findOrFail(id)
-      // service.images = service.images
       return response.send({
         error: false,
         status: 'success',

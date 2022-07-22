@@ -33,6 +33,7 @@ Route.get('/article', 'ArticlesController.all')
 Route.post('/article', 'ArticlesController.store')
 
 Route.get('/service', 'ServicesController.all')
+Route.get('/service/:id', 'ServicesController.show')
 Route.post('/service', 'ServicesController.store')
 Route.get('/service/:id/edit', 'ServicesController.edit')
 Route.delete('/service/:id', 'ServicesController.destroy')
