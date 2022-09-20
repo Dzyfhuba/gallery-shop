@@ -23,8 +23,8 @@ export default class ServicesController {
 
   public async show ({request, response}) {
     try {
-      const { id } = request.params()
-      const service = await Service.findOrFail(id)
+      const { slug } = request.params()
+      const service = await Service.findBy('slug', slug)
 
       return response.send({
         error: false,

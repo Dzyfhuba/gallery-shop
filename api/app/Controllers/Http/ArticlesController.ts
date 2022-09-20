@@ -45,4 +45,43 @@ export default class ArticlesController {
       })
     }
   }
+
+  public async show ({request, response}) {
+    try {
+      const { slug } = request.params()
+      const article = await Article.findBy('slug', slug)
+
+      return response.send({
+        error: false,
+        status: 'success',
+        data: article,
+      })
+    } catch (error) {
+      return response.send({
+        error: true,
+        status: 'error',
+        data: error,
+      })
+    }
+  }
+
+  public async destroy ({request, response}) {
+    try {
+      const {id} = request.params()
+      const article = await Article.findOrFail(id)
+      await article?.delete()
+
+      return response.send({
+        error: false,
+        status: 'success',
+        data: article,
+      })
+    } catch (error) {
+      return response.send({
+        error: true,
+        status: 'error',
+        data: error,
+      })
+    }
+  }
 }

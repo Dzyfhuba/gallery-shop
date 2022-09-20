@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import Logo from '../Images/logo.png'
 import Button from '../Components/Button'
 import anime from 'animejs'
 import PropTypes from 'prop-types'
 import ButtonAnchor from '../Components/ButtonAnchor'
-import Logout from '../Components/Logout'
+import Logout from '../Components/Logout.tsx'
+import secureLocalStorage from 'react-secure-storage'
 
 const Navbar = props => {
 	const [sidebarShow, setSidebarShow] = useState(false)
+	const [user, setUser] = useState(null)
+
+	useEffect(() => {
+		const user = secureLocalStorage.getItem('user') || null
+		setUser(user)
+	}, [])
 
 	const handleSidebarShow = (show) => {
 		// const sidebar = document.querySelector('#sidebar_body')
@@ -33,6 +40,7 @@ const Navbar = props => {
 		}
 		console.log(sidebarShow)
 	}
+	console.log(user);
 	
 	return (
 		<nav className='h-16 py-1 px-8 flex justify-between fixed w-full bg-secondary text-neutral-100'>
@@ -52,19 +60,17 @@ const Navbar = props => {
 				<NavLink to={'/about'} className='h-full flex justify-center items-center font-black w-[120px]
             	hover:text-neutral-700 transition duration-300 ease-in-out
             	'>Kontak Kami</NavLink>
-				{props.auth ? 
-					(
+				{
+					user ? (
 						<>
 							<NavLink to={'/admin'} className='h-full flex justify-center items-center font-black w-[120px]
-								hover:text-neutral-700 transition duration-300 ease-in-out'
-							>Admin</NavLink>
-							<Logout className={'bg-transparent h-full'} />
+								hover:text-neutral-700 transition duration-300 ease-in-out
+								'>Admin</NavLink>
+							<NavLink to={'/logout'} className='h-full flex justify-center items-center font-black w-[120px]
+								hover:text-neutral-700 transition duration-300 ease-in-out
+								'>Logout</NavLink>
 						</>
-					) 
-					: 
-					(
-						<ButtonAnchor to={'/login'} className='bg-transparent'>Login</ButtonAnchor>
-					)
+					) : null
 				}
 			</div>
 			<Button onClick={() => handleSidebarShow(true)} className={`block md:hidden`}>
@@ -99,14 +105,17 @@ const Navbar = props => {
 						leading-8
 						text-neutral-900 hover:text-neutral-500 hover:shadow-lg transition duration-300 ease-in-out
 						'>Kontak Kami</NavLink>
-						{props.auth ? 
-							(
-								<Logout />
-							) 
-							: 
-							(
-								<ButtonAnchor to={'/login'}>Login</ButtonAnchor>
-							)
+						{
+							user ? (
+								<>
+									<NavLink to={'/admin'} className='h-full flex justify-center items-center font-black w-[120px]
+								hover:text-neutral-700 transition duration-300 ease-in-out
+								'>Admin</NavLink>
+									<NavLink to={'/logout'} className='h-full flex justify-center items-center font-black w-[120px]
+								hover:text-neutral-700 transition duration-300 ease-in-out
+								'>Logout</NavLink>
+								</>
+							) : null
 						}
 					</div>
 				</div>
@@ -116,7 +125,11 @@ const Navbar = props => {
 }
 
 Navbar.propTypes = {
-	auth: PropTypes.any
+	isAdmin: PropTypes.bool.isRequired
+}
+
+Navbar.defaultProps = {
+	isAdmin: false
 }
 
 export default Navbar

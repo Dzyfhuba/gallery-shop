@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
+import secureLocalStorage from 'react-secure-storage'
 import swal from 'sweetalert'
 import Button from '../Components/Button'
 import ButtonAnchor from '../Components/ButtonAnchor'
@@ -10,7 +11,6 @@ import Input from '../Components/Input'
 const Login = () => {
 	const [email, setEmail] = useState(String)
 	const [password, setPassword] = useState(String)
-	const [cookie, setCookie] = useCookies(['token'])
 	const navigate = useNavigate()
 
 	const handleChangeEmail = e => setEmail(e.target.value)
@@ -18,7 +18,7 @@ const Login = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault()
-		console.log(cookie.token)
+		let token = secureLocalStorage.getItem('token') || {type: '', token: ''}
 		const data = {
 			email,
 			password
@@ -26,18 +26,18 @@ const Login = () => {
 
 		axios.post('http://localhost:3333/login', data, {
 			headers: {
-				'Authorization': `Bearer ${cookie.token}`
+				'Authorization': `${token.type} ${token.token}`
 			},
 		})
 			.then(res => {
 				console.log(res.data)
 				if(res.data.status == 'success') {
 					swal('Success', res.data.message, res.data.status)
-						.then(() => {
-							setCookie('token', res.data.token.token)
-							localStorage.setItem('user', JSON.stringify(res.data.user))
+						.then(async () => {
+							// localStorage.setItem('user', JSON.stringify(res.data.user))
+							secureLocalStorage.setItem('user', res.data.user)
+							secureLocalStorage.setItem('token', res.data.user)
 						})
-						.then(console.log(cookie.token))
 						.then(() => {
 							window.location.href = '/'
 						})

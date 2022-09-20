@@ -31,9 +31,11 @@ Route.get('/auth/check', 'AuthController.authCheck')
 
 Route.get('/article', 'ArticlesController.all')
 Route.post('/article', 'ArticlesController.store')
+Route.get('/article/:slug', 'ArticlesController.show')
+Route.delete('/article/:id', 'ArticlesController.destroy')
 
 Route.get('/service', 'ServicesController.all')
-Route.get('/service/:id', 'ServicesController.show')
+Route.get('/service/:slug', 'ServicesController.show')
 Route.post('/service', 'ServicesController.store')
 Route.get('/service/:id/edit', 'ServicesController.edit')
 Route.delete('/service/:id', 'ServicesController.destroy')

@@ -13,6 +13,7 @@ import axios from 'axios'
 import Hosts from '../../Utils/Hosts'
 import swal from 'sweetalert'
 import { useNavigate } from 'react-router-dom'
+import Admin from '../../Layouts/Admin.tsx'
 
 const ServiceCreate = props => {
 	const [title, setTitle] = useState(String)
@@ -26,7 +27,6 @@ const ServiceCreate = props => {
 		setImage(imagesURL.split(';'))
 	}
 	const handleChangeMarkdown = useCallback((value) => {
-		console.log(value)
 		setMarkdownValue(value)
 	}, [])
 
@@ -39,7 +39,6 @@ const ServiceCreate = props => {
 			images, 
 			content: markdownValue
 		}
-		console.log(data)
 
 		axios.post(`${Hosts.main}/service`, data)
 			.then(res => {
@@ -54,11 +53,7 @@ const ServiceCreate = props => {
 	}
 	
 	return (
-		<>
-			<header>
-				<Navbar auth={props.auth} />
-				<AdminNavbar />
-			</header>
+		<Admin>
 			<main className='pt-32 min-h-screen bg-primary md:px-24 px-4'>
 				<h1 className='text-4xl font-black mb-3'>Admin: Service Page Create</h1>
 				<form onSubmit={handleSubmit}>
@@ -79,7 +74,7 @@ const ServiceCreate = props => {
 				</form>
 			</main>
 			<GDrive2Embed />
-		</>
+		</Admin>
 	)
 }
 

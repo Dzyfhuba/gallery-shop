@@ -1,18 +1,16 @@
 import React from 'react'
 import Navbar from '../Containers/Navbar'
 import PropTypes from 'prop-types'
+import Main from '../Layouts/Main.tsx'
 
 const Home = props => {
 	return (
-		<>
-			<header>
-				<Navbar auth={props.auth} />
-			</header>
+		<Main>
 			<main className='min-h-screen bg-primary'>
-
+				asd
 			</main>
 			
-		</>
+		</Main>
 	)
 }
 
