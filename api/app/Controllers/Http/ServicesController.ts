@@ -108,4 +108,33 @@ export default class ServicesController {
       })
     }
   }
+
+  public async update ({request, response}: HttpContextContract) {
+    const body = request.body()
+    try {
+      body.images = JSON.stringify(body.images)
+      body.content = JSON.stringify(body.content)
+      const service = await Service.updateOrCreate({
+        id: body.id,
+      }, body)
+
+      return response.status(201).json({
+        error: false,
+        status: 'success',
+        data: {
+          service,
+        },
+        message: 'Update success',
+      })
+    } catch (error) {
+      return response.status(500).json({
+        error: true,
+        status: 'error',
+        data: {
+          error,
+        },
+        message: 'Update failed',
+      })
+    }
+  }
 }

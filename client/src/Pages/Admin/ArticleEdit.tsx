@@ -15,7 +15,7 @@ type Props = {
     //
 }
 
-const ServiceEdit = (props: Props) => {
+const ArticleEdit = (props: Props) => {
   const [title, setTitle] = useState<string>('')
   const [images, setImages] = useState(Array)
   const [markdownValue, setMarkdownValue] = useState('Initial value')
@@ -29,8 +29,8 @@ const ServiceEdit = (props: Props) => {
           title: string,
           id: number
           images: string
-      } = await axios.get(Hosts.main + '/service/' + slug + '/edit')
-        .then(res => res.data.data.service)
+      } = await axios.get(Hosts.main + '/article/' + slug + '/edit')
+        .then(res => res.data.data.article)
         .catch(err => console.error(err))
       console.log(res);
       
@@ -60,11 +60,11 @@ const ServiceEdit = (props: Props) => {
       content: markdownValue
     }
 
-    axios.put(`${Hosts.main}/service`, data)
+    axios.put(`${Hosts.main}/article`, data)
       .then(res => {
         if (!res.data.error) {
           swal('Success', res.data.message, 'success')
-            .then(() => navigate('/admin/service'))
+            .then(() => navigate('/admin/article'))
         } else {
           swal('Failed', res.data.message, 'error')
           console.log(res.data.e)
@@ -75,7 +75,7 @@ const ServiceEdit = (props: Props) => {
   return (
     <Admin>
       <main className='pt-32 min-h-screen bg-primary md:px-24 px-4'>
-        <h1 className='text-4xl font-black mb-3'>Admin: Service Page Create</h1>
+        <h1 className='text-4xl font-black mb-3'>Admin: article Page Create</h1>
         <form onSubmit={handleSubmit}>
           <div className="flex justify-end"><Button type='submit'>Submit</Button></div>
           <Input label='Title' name='title' type='text' defaultValue={title} onChange={handleChangeTitle} required/>
@@ -98,4 +98,4 @@ const ServiceEdit = (props: Props) => {
   )
 }
 
-export default ServiceEdit
+export default ArticleEdit
