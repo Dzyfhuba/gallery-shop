@@ -14,8 +14,7 @@ const Admin = (props: Props) => {
 	}, [])
 	return (
 		<div>
-			<header>
-				<Navbar isAdmin={true} />
+			<header className='sticky top-0'>
 				<AdminNavbar />
 			</header>
 			{props.children}

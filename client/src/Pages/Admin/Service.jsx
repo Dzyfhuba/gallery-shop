@@ -61,11 +61,12 @@ const Service = props => {
 				<h1 className='text-4xl font-black mb-3'>Admin: Service Page</h1>
 				<ButtonAnchor to={'/admin/service/create'} className='mb-3'>Add New Service</ButtonAnchor>
 				<div className="overflow-x-scroll">
-					{isLoading || !services.length ? 'asd' : (
+					{isLoading || !services.length ? '' : (
 						<table className='w-full table border border-neutral-900 border-separate'>
 							<colgroup>
 								<col className='w-full'/>
 								<col className='inline-flex'/>
+								<col />
 								<col />
 								<col />
 							</colgroup>
@@ -73,8 +74,9 @@ const Service = props => {
 								<tr>
 									<th className='border border-neutral-900 p-3'>Judul</th>
 									<th className='border border-neutral-900 p-3'>Terakhir Disunting</th>
-									<th className='border border-neutral-900 p-3'>open</th>
-									<th className='border border-neutral-900 p-3'>delete</th>
+									<th className='border border-neutral-900 p-3'>Open</th>
+									<th className='border border-neutral-900 p-3'>Edit</th>
+									<th className='border border-neutral-900 p-3'>Delete</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -88,6 +90,9 @@ const Service = props => {
 										</td>
 										<td className='border border-neutral-900 p-3'>
 											<ButtonAnchor to={`/service/${service.slug}`}>Open</ButtonAnchor>
+										</td>
+										<td className='border border-neutral-900 p-3'>
+											<ButtonAnchor to={`/service/${service.slug}/edit`}>Edit</ButtonAnchor>
 										</td>
 										<td className='border border-neutral-900 p-3'>
 											<Button className='w-full bg-ternary' onClick={() => deleteEvent(service.id)}>Delete</Button>

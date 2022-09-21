@@ -11,8 +11,9 @@ import AdminArticleCreate from './Admin/ArticleCreate'
 import AdminAbout from "./Admin/About";
 import ServiceShow from "./ServiceShow";
 import ArticleShow from "./ArticleShow";
+import ServiceEdit from './Admin/ServiceEdit.tsx'
 
 export {
 	Home, Login, Register, Service, Article, About, AdminService, AdminArticle, AdminAbout, AdminServiceCreate, AdminArticleCreate,
-	ServiceShow, ArticleShow
+	ServiceShow, ArticleShow, ServiceEdit
 }

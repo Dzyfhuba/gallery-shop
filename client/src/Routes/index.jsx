@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Home, Login, Register, Service, Article, About, AdminService, AdminArticle, AdminAbout, AdminServiceCreate, AdminArticleCreate, ServiceShow, ArticleShow } from '../Pages'
+import { Home, Login, Register, Service, Article, About, AdminService, AdminArticle, AdminAbout, AdminServiceCreate, AdminArticleCreate, ServiceShow, ArticleShow, ServiceEdit } from '../Pages'
 import Authentication from '../Utils/Authentication'
 import Logout from '../Components/Logout.tsx'
 
@@ -29,6 +29,7 @@ const index = () => {
 				<Route path={'/admin/about'} element={<AdminAbout />} />
 
 				<Route path={'service/:slug'} element={<ServiceShow />} />
+				<Route path={'service/:slug/edit'} element={<ServiceEdit />} />
 				<Route path={'article/:slug'} element={<ArticleShow />} />
 			</Routes>
 		</Router>

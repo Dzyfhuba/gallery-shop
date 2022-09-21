@@ -1,4 +1,4 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Service from 'App/Models/Service'
 
@@ -81,6 +81,30 @@ export default class ServicesController {
         error: true,
         status: 'error',
         data: error,
+      })
+    }
+  }
+
+  public async edit ({request, response}: HttpContextContract) {
+    const {slug} = request.params()
+
+    try {
+      const service = await Service.findByOrFail('slug', slug)
+
+      return response.status(200).json({
+        error: false,
+        status: 'success',
+        data: {
+          service,
+        },
+      })
+    } catch (error) {
+      return response.status(500).json({
+        error: true,
+        status: error,
+        data: {
+          error,
+        },
       })
     }
   }
