@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
 
 export default class Article extends BaseModel {
   @column({ isPrimary: true })
@@ -9,6 +10,11 @@ export default class Article extends BaseModel {
   public title: String
 
   @column()
+  @slugify({
+    fields: ['title'],
+    strategy: 'dbIncrement',
+    allowUpdates: true,
+  })
   public slug: String
 
   @column()

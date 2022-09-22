@@ -9,7 +9,7 @@ export default class extends BaseSeeder {
     // Write your database queries inside the run method
     await (new UserSeeder(this.client)).run()
     await (new About(this.client)).run()
-    ArticleFactory.createMany(20)
-    ServiceFactory.createMany(20)
+    await ArticleFactory.createMany(200)
+    await ServiceFactory.createMany(200)
   }
 }
