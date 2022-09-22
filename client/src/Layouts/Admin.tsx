@@ -8,18 +8,18 @@ type Props = {
 }
 
 const Admin = (props: Props) => {
-	const [user, setUser] = useState(String)
-	useEffect(() => {
-		Authentication().then(res => setUser(res))
-	}, [])
-	return (
-		<div>
-			<header className='sticky top-0'>
-				<AdminNavbar />
-			</header>
-			{props.children}
-		</div>
-	)
+  const [user, setUser] = useState(String)
+  useEffect(() => {
+    Authentication().then(res => setUser(res))
+  }, [])
+  return (
+    <div>
+      <header className='sticky top-0'>
+        <AdminNavbar />
+      </header>
+      {props.children}
+    </div>
+  )
 }
 
 export default Admin
