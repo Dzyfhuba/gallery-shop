@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.string('title').unique()
       table.string('slug').unique()
       table.text('images')
-      table.json('content')
+      table.text('content')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

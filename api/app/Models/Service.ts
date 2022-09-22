@@ -12,7 +12,7 @@ export default class Service extends BaseModel {
   public slug: String
 
   @column()
-  public images: JSON
+  public images: String
 
   @column()
   public content: String
