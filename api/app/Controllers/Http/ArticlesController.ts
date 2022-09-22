@@ -1,5 +1,4 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Article from 'App/Models/Article'
 
 export default class ArticlesController {
@@ -81,6 +80,59 @@ export default class ArticlesController {
         error: true,
         status: 'error',
         data: error,
+      })
+    }
+  }
+
+  public async edit ({request, response}: HttpContextContract) {
+    const {slug} = request.params()
+
+    try {
+      const article = await Article.findByOrFail('slug', slug)
+
+      return response.status(200).json({
+        error: false,
+        status: 'success',
+        data: {
+          article,
+        },
+      })
+    } catch (error) {
+      return response.status(500).json({
+        error: true,
+        status: error,
+        data: {
+          error,
+        },
+      })
+    }
+  }
+
+  public async update ({request, response}: HttpContextContract) {
+    const body = request.body()
+    try {
+      body.images = JSON.stringify(body.images)
+      body.content = JSON.stringify(body.content)
+      const article = await Article.updateOrCreate({
+        id: body.id,
+      }, body)
+
+      return response.status(201).json({
+        error: false,
+        status: 'success',
+        data: {
+          article,
+        },
+        message: 'Update success',
+      })
+    } catch (error) {
+      return response.status(500).json({
+        error: true,
+        status: 'error',
+        data: {
+          error,
+        },
+        message: 'Update failed',
       })
     }
   }

@@ -75,7 +75,7 @@ const ArticleEdit = (props: Props) => {
   return (
     <Admin>
       <main className='pt-32 min-h-screen bg-primary md:px-24 px-4'>
-        <h1 className='text-4xl font-black mb-3'>Admin: article Page Create</h1>
+        <h1 className='text-4xl font-black mb-3'>Admin: Article Page Edit</h1>
         <form onSubmit={handleSubmit}>
           <div className="flex justify-end"><Button type='submit'>Submit</Button></div>
           <Input label='Title' name='title' type='text' defaultValue={title} onChange={handleChangeTitle} required/>
