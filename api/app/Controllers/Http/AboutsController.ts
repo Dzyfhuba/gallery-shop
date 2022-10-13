@@ -21,7 +21,17 @@ export default class AboutsController {
     }
   }
 
-  public async update ({}: HttpContextContract) {}
+  public async update ({request, response}: HttpContextContract) {
+    const {id} = request.params()
+    const body = request.body()
+    try {
+      const about = await About.updateOrCreate({id}, body)
+
+      return response.created(about)
+    } catch (error) {
+      return response.internalServerError(error)
+    }
+  }
 
   public async destroy ({}: HttpContextContract) {}
 }

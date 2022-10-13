@@ -9,6 +9,7 @@ import Button from '../../Components/Button'
 import axios from 'axios'
 import Hosts from '../../Utils/Hosts'
 import AboutInterface from '../../Interfaces/AboutInterface'
+import Swal from 'sweetalert2'
 
 type Props = {
     //
@@ -30,9 +31,23 @@ const About = (props:Props) => {
     })()
   }, [])
 
-  const handleSubmit = (e:React.SyntheticEvent) => {
+  const handleSubmit = async (e:React.SyntheticEvent) => {
     e.preventDefault()
     console.log(formData === about);
+    if (formData === about) {
+      Swal.fire('Data tidak bisa diupdate karena tidak diubah', undefined, 'warning')
+      return
+    }
+
+    const response = await axios.put(Hosts.main + '/about/1', formData)
+      .then(res => {
+        console.log(res)
+        return res
+      })
+      .then(res => res.data)
+      .catch(err => Swal.fire(err, undefined, 'error'))
+
+    Swal.fire('Berhasil diupdate', undefined, 'success')
   }
 
   return (
