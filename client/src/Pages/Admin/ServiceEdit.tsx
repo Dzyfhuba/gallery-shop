@@ -41,7 +41,7 @@ const ServiceEdit = (props: Props) => {
   }, [])
 
   const handleChangeTitle = (e:React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)
-  const handleChangeImage = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeImage = (e:React.ChangeEvent<HTMLTextAreaElement>) => {
     const imagesURL = e.target.value
     setImages(imagesURL.split(';'))
   }
@@ -74,12 +74,12 @@ const ServiceEdit = (props: Props) => {
 	
   return (
     <Admin>
-      <main className='pt-32 min-h-screen bg-primary md:px-24 px-4'>
+      <main className='pt-4 min-h-screen bg-primary md:px-24 px-4'>
         <h1 className='text-4xl font-black mb-3'>Admin: Service Page Edit</h1>
         <form onSubmit={handleSubmit}>
           <div className="flex justify-end"><Button type='submit'>Submit</Button></div>
           <Input label='Title' name='title' type='text' defaultValue={title} onChange={handleChangeTitle} required/>
-          <Textarea label='Images' name='image' type='text' defaultValue={images} onChange={handleChangeImage} required/>
+          <Textarea label='Images' name='image' type='text' defaultValue={images.join(';\n')} onChange={handleChangeImage} required/>
           <div id="preview" className='flex gap-1 mb-3'>
             {images.map((image, key) => <img 
               src={image as string} key={key} 

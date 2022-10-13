@@ -15,7 +15,7 @@ export default class extends BaseSeeder {
         name: 'Hafidz Ubaidillah',
         email: 'uba21id@gmail.com',
         username: 'ubaidillah',
-        password: 'plmoknijb',
+        password: '12345678',
       },
     ])
   }

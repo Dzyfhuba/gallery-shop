@@ -42,3 +42,5 @@ Route.post('/service', 'ServicesController.store')
 Route.put('/service', 'ServicesController.update')
 Route.get('/service/:slug/edit', 'ServicesController.edit')
 Route.delete('/service/:id', 'ServicesController.destroy')
+
+Route.resource('/about', 'AboutsController')

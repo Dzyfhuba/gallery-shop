@@ -57,7 +57,7 @@ const Service = props => {
 
   return (
     <Admin>
-      <main className='pt-32 min-h-screen bg-primary md:px-24 px-4'>
+      <main className='pt-4 min-h-screen bg-primary md:px-24 px-4'>
         <h1 className='text-4xl font-black mb-3'>Admin: Service Page</h1>
         <ButtonAnchor to={'/admin/service/create'} className='mb-3'>Add New Service</ButtonAnchor>
         <div className="overflow-x-scroll">
