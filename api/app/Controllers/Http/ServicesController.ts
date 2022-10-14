@@ -5,7 +5,9 @@ import Service from 'App/Models/Service'
 export default class ServicesController {
   public async all ({response}) {
     try {
-      const services = await Service.all()
+      const services = await Service
+        .query()
+        .orderBy('updated_at', 'desc')
 
       return response.send({
         error: false,

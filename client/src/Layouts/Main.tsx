@@ -7,14 +7,12 @@ type Props = {
 }
 
 const Main = (props: Props) => {
-	return (
-		<div>
-			<header>
-				<Navbar />
-			</header>
-			{props.children}
-		</div>
-	)
+  return (
+    <>
+      <Navbar />
+      {props.children}
+    </>
+  )
 }
 
 export default Main
