@@ -7,6 +7,7 @@ import Hosts from '../Utils/Hosts'
 import Swal from 'sweetalert2'
 import {LazyLoadImage} from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
+import {DateTime} from 'luxon'
 
 const Service = () => {
   const [services, setServices] = useState<ServiceInterface[]>([])
@@ -31,10 +32,10 @@ const Service = () => {
   return (
     <Main>
       <main className='min-h-screen bg-primary'>
-        <div id="services-list" className='grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-3'>
+        <div id="services-list" className='grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 p-3'>
           {
             services.length ? services.map(service => (
-              <article id="services-item" key={service.id}
+              <div id="services-item" key={service.id}
                 className={'shadow-md rounded overflow-hidden'}
               >
                 <LazyLoadImage
@@ -42,8 +43,13 @@ const Service = () => {
                   src={service.images}
                   className={'aspect-video object-cover object-center'}
                 />
-                <h1 className='text-lg font-bold capitalize hover:text-blue-500'><Link to={`/service/${service.slug}`}>{service.title}</Link></h1>
-              </article>
+                <article className='p-3'>
+                  <h1 className='text-lg font-bold capitalize hover:text-blue-500'>
+                    <Link to={`/service/${service.slug}`}>{service.title}</Link>
+                  </h1>
+                  <p className='text-right'>{new Date(service.updated_at).toLocaleDateString('id')}</p>
+                </article>
+              </div>
             ))
               : 'No Services'
           }
