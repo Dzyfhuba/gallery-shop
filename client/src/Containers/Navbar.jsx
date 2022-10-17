@@ -109,10 +109,10 @@ const Navbar = props => {
               user ? (
                 <>
                   <NavLink to={'/admin'} className='h-full flex justify-center items-center font-black w-[120px]
-								hover:text-neutral-700 transition duration-300 ease-in-out
+								text-neutral-700 hover:text-neutral-100 transition duration-300 ease-in-out
 								'>Admin</NavLink>
                   <NavLink to={'/logout'} className='h-full flex justify-center items-center font-black w-[120px]
-								hover:text-neutral-700 transition duration-300 ease-in-out
+								text-neutral-700 hover:text-neutral-100 transition duration-300 ease-in-out
 								'>Logout</NavLink>
                 </>
               ) : null

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Home, Login, Register, Service, Article, About, AdminService, AdminArticle, AdminAbout, AdminServiceCreate, AdminArticleCreate, ServiceShow, ArticleShow, ServiceEdit, ArticleEdit } from '../Pages'
 import Authentication from '../Utils/Authentication'
-import Logout from '../Components/Logout.tsx'
+import Logout from '../Components/Logout'
 
 const index = () => {
   const [user, setUser] = useState(String)

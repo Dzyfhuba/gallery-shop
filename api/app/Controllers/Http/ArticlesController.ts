@@ -4,7 +4,7 @@ import Article from 'App/Models/Article'
 export default class ArticlesController {
   public async all ({response}) {
     try {
-      const articles = await Article.all()
+      const articles = await Article.query().orderBy('updated_at', 'desc')
 
       return response.send({
         error: false,
