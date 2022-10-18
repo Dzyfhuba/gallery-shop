@@ -1,15 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { ProSidebarProvider, useProSidebar } from 'react-pro-sidebar'
+import 'swiper/css'
 import Navbar from '../Containers/Navbar'
-import Authentication from '../Utils/Authentication'
+import SidebarContainer from '../Containers/SidebarContainer'
 
 type Props = {
     children: React.ReactNode
 }
 
 const Main = (props: Props) => {
+  const [sidebarVisibility, setSidebarVisibility] = useState<boolean>(false)
+  const { collapseSidebar } = useProSidebar()
+
+  const menuOnClick = (e:React.SyntheticEvent) => {
+    setSidebarVisibility(!sidebarVisibility)
+    console.log(sidebarVisibility)
+    collapseSidebar()
+  }
+
   return (
     <>
-      <Navbar />
+      <SidebarContainer show={sidebarVisibility} />
+      <Navbar menuEvent={menuOnClick} />
       {props.children}
     </>
   )

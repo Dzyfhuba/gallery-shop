@@ -4,10 +4,13 @@ import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import Routes from './Routes/index';
+import { ProSidebarProvider } from 'react-pro-sidebar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Routes />
+  <ProSidebarProvider>
+    <Routes />
+  </ProSidebarProvider>
 );
 
 // If you want your app to work offline and load faster, you can change

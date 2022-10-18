@@ -21,6 +21,7 @@
     "react-images-uploading": "^3.1.7",
     "react-lazy-load-image-component": "^1.5.5",
     "react-loading": "^2.0.3",
+    "react-pro-sidebar": "^1.0.0-alpha.6",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-secure-storage": "^1.0.18",
@@ -72,6 +73,7 @@
     ]
   },
   "devDependencies": {
+    "@types/animejs": "^3.1.5",
     "@types/luxon": "^3.0.1",
     "@types/react-lazy-load-image-component": "^1.5.2",
     "@typescript-eslint/eslint-plugin": "^5.38.0",

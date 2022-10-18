@@ -5,19 +5,23 @@ import Button from '../Components/Button'
 import anime from 'animejs'
 import PropTypes from 'prop-types'
 import ButtonAnchor from '../Components/ButtonAnchor'
-import Logout from '../Components/Logout.tsx'
+import Logout from '../Components/Logout'
 import secureLocalStorage from 'react-secure-storage'
 
-const Navbar = props => {
+type Props = {
+  menuEvent: (e:React.SyntheticEvent) => void
+}
+
+const Navbar = (props: Props) => {
   const [sidebarShow, setSidebarShow] = useState(false)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<unknown>(null)
 
   useEffect(() => {
     const user = secureLocalStorage.getItem('user') || null
     setUser(user)
   }, [])
 
-  const handleSidebarShow = (show) => {
+  const handleSidebarShow = (show:boolean) => {
     // const sidebar = document.querySelector('#sidebar_body')
     if (show) {
       anime({
@@ -40,10 +44,15 @@ const Navbar = props => {
     }
     console.log(sidebarShow)
   }
-  console.log(user);
 	
   return (
-    <nav className='h-16 py-1 px-8 flex justify-between sticky top-0 w-full bg-secondary text-neutral-100'>
+    <nav className='h-16 py-1 px-2 md:px-8 flex md:justify-between sticky top-0 w-full bg-secondary text-neutral-100'>
+      <Button onClick={props.menuEvent} className={`block md:hidden`}>
+        <span className="material-symbols-rounded">
+					menu
+        </span>
+      </Button>
+
       <div className="h-full">
         <Link to={'/'} className='h-full'>
           <img src={Logo} alt="logo" className='object-cover h-full'/>
@@ -73,13 +82,9 @@ const Navbar = props => {
           ) : null
         }
       </div>
-      <Button onClick={() => handleSidebarShow(true)} className={`block md:hidden`}>
-        <span className="material-symbols-rounded">
-					menu
-        </span>
-      </Button>
+      
 			
-      <div id="sidebar_container" className={`fixed top-0 left-0 h-screen w-screen bg-neutral-900 bg-opacity-50
+      {/* <div id="sidebar_container" className={`fixed top-0 left-0 h-screen w-screen bg-neutral-900 bg-opacity-50
 			${sidebarShow ? 'visible' : 'invisible'} md:invisible
 			`}>
         <div id="sidebar_body" className='bg-primary fixed top-0 -right-full w-1/2 h-screen opacity-100'>
@@ -119,7 +124,7 @@ const Navbar = props => {
             }
           </div>
         </div>
-      </div>
+      </div> */}
     </nav>
   )
 }
