@@ -60,10 +60,10 @@ const Navbar = (props: Props) => {
       </div>
 
       <div className='hidden items-center gap-3 md:flex sticky' id='nav_body'>
-        <NavLink to={'/service'} className='h-full flex justify-center items-center font-black w-[120px]
+        <NavLink to={'/services'} className='h-full flex justify-center items-center font-black w-[120px]
             	hover:text-neutral-700 transition duration-300 ease-in-out
             	'>Jasa</NavLink>
-        <NavLink to={'/article'} className='h-full flex justify-center items-center font-black w-[120px]
+        <NavLink to={'/articles'} className='h-full flex justify-center items-center font-black w-[120px]
             	hover:text-neutral-700 transition duration-300 ease-in-out
             	'>Artikel</NavLink>
         <NavLink to={'/about'} className='h-full flex justify-center items-center font-black w-[120px]
@@ -98,11 +98,11 @@ const Navbar = (props: Props) => {
             </Button>
           </div>
           <div className='flex flex-col items-center gap-3'>
-            <NavLink to={'/service'} className='h-full flex justify-center items-center font-black w-full
+            <NavLink to={'/services'} className='h-full flex justify-center items-center font-black w-full
 						leading-8
 						text-neutral-900 hover:text-neutral-500 hover:shadow-lg transition duration-300 ease-in-out
 						'>Jasa</NavLink>
-            <NavLink to={'/article'} className='h-full flex justify-center items-center font-black w-full
+            <NavLink to={'/articles'} className='h-full flex justify-center items-center font-black w-full
 						leading-8
 						text-neutral-900 hover:text-neutral-500 hover:shadow-lg transition duration-300 ease-in-out
 						'>Artikel</NavLink>

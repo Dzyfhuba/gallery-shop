@@ -13,7 +13,7 @@ const ServiceShow = props => {
   const {slug} = useParams()
 	
   useEffect(() => {
-    axios.get(`${Hosts.main}/service/${slug}`)
+    axios.get(`${Hosts.main}/services/${slug}`)
       .then(res => {
         setIsLoading(false)
         setService(res.data.data)

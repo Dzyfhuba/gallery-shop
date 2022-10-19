@@ -18,7 +18,7 @@ const Article = props => {
   }, [])
 
   const fetchData = () => {
-    axios.get(Hosts.main + '/article')
+    axios.get(Hosts.main + '/articles')
       .then(res => {
         const mapped = res.data.data.map(schedule => {
           return {
@@ -43,7 +43,7 @@ const Article = props => {
     })
       .then(value => {
         if (value) {
-          axios.delete(`${Hosts.main}/article/${id}`)
+          axios.delete(`${Hosts.main}/articles/${id}`)
             .then(res => {
               if (res.data.status == 'success') {
                 fetchData()
@@ -59,7 +59,7 @@ const Article = props => {
     <Admin>
       <main className='pt-4 min-h-screen bg-primary md:px-24 px-4'>
         <h1 className='text-4xl font-black mb-3'>Admin: Article Page</h1>
-        <ButtonAnchor to={'/admin/article/create'} className='mb-3'>Add New article</ButtonAnchor>
+        <ButtonAnchor to={'/admin/articles/create'} className='mb-3'>Add New article</ButtonAnchor>
         <div className="overflow-x-scroll">
           {isLoading || !articles.length ? 'asd' : (
             <table className='w-full table border border-neutral-900 border-separate'>
@@ -88,10 +88,10 @@ const Article = props => {
                       {article.updated_at}
                     </td>
                     <td className='border border-neutral-900 p-3'>
-                      <ButtonAnchor to={`/article/${article.slug}`}>Open</ButtonAnchor>
+                      <ButtonAnchor to={`/articles/${article.slug}`}>Open</ButtonAnchor>
                     </td>
                     <td className='border border-neutral-900 p-3'>
-                      <ButtonAnchor to={`/article/${article.slug}/edit`}>Edit</ButtonAnchor>
+                      <ButtonAnchor to={`/articles/${article.slug}/edit`}>Edit</ButtonAnchor>
                     </td>
                     <td className='border border-neutral-900 p-3'>
                       <Button className='w-full bg-ternary' onClick={() => deleteEvent(article.id)}>Delete</Button>

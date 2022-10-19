@@ -13,15 +13,10 @@ const Service = () => {
   const [services, setServices] = useState<ServiceInterface[]>([])
   useEffect(() => {
     (async () => {
-      const data = await axios.get(Hosts.main + '/service')
+      const data = await axios.get(Hosts.main + '/services')
         .then(res => res.data.data)
         .then(data => {
-          return data.map((item:ServiceInterface) => {
-            return {
-              ...item,
-              images: JSON.parse(item.images || '')[0] || 'no image'
-            }
-          })
+          return data
         })
         .catch(err => Swal.fire(JSON.stringify(err), undefined, 'error'))
 

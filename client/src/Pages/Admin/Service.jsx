@@ -18,7 +18,7 @@ const Service = props => {
   }, [])
 
   const fetchData = () => {
-    axios.get(Hosts.main + '/service')
+    axios.get(Hosts.main + '/services')
       .then(res => {
         const mapped = res.data.data.map(schedule => {
           return {
@@ -43,7 +43,7 @@ const Service = props => {
     })
       .then(value => {
         if (value) {
-          axios.delete(`${Hosts.main}/service/${id}`)
+          axios.delete(`${Hosts.main}/services/${id}`)
             .then(res => {
               if (res.data.status == 'success') {
                 fetchData()
@@ -59,7 +59,7 @@ const Service = props => {
     <Admin>
       <main className='pt-4 min-h-screen bg-primary md:px-24 px-4'>
         <h1 className='text-4xl font-black mb-3'>Admin: Service Page</h1>
-        <ButtonAnchor to={'/admin/service/create'} className='mb-3'>Add New Service</ButtonAnchor>
+        <ButtonAnchor to={'/admin/services/create'} className='mb-3'>Add New Service</ButtonAnchor>
         <div className="overflow-x-scroll">
           {isLoading || !services.length ? '' : (
             <table className='w-full table border border-neutral-900 border-separate'>
@@ -89,10 +89,10 @@ const Service = props => {
                       {service.updated_at}
                     </td>
                     <td className='border border-neutral-900 p-3'>
-                      <ButtonAnchor to={`/service/${service.slug}`}>Open</ButtonAnchor>
+                      <ButtonAnchor to={`/services/${service.slug}`}>Open</ButtonAnchor>
                     </td>
                     <td className='border border-neutral-900 p-3'>
-                      <ButtonAnchor to={`/service/${service.slug}/edit`}>Edit</ButtonAnchor>
+                      <ButtonAnchor to={`/services/${service.slug}/edit`}>Edit</ButtonAnchor>
                     </td>
                     <td className='border border-neutral-900 p-3'>
                       <Button className='w-full bg-ternary' onClick={() => deleteEvent(service.id)}>Delete</Button>

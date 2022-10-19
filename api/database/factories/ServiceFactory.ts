@@ -7,7 +7,6 @@ export default Factory.define(Service, ({ faker }) => {
     images.push(faker.image.cats(undefined, undefined,true))
   }
   return {
-    images: JSON.stringify(images),
     content: faker.lorem.paragraphs(),
     title: faker.lorem.sentence(),
   }

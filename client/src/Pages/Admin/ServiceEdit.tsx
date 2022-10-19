@@ -29,7 +29,7 @@ const ServiceEdit = (props: Props) => {
           title: string,
           id: number
           images: string
-      } = await axios.get(Hosts.main + '/service/' + slug + '/edit')
+      } = await axios.get(Hosts.main + '/services/' + slug + '/edit')
         .then(res => res.data.data.service)
         .catch(err => console.error(err))
       console.log(res);
@@ -60,11 +60,11 @@ const ServiceEdit = (props: Props) => {
       content: markdownValue
     }
 
-    axios.put(`${Hosts.main}/service`, data)
+    axios.put(`${Hosts.main}/services`, data)
       .then(res => {
         if (!res.data.error) {
           swal('Success', res.data.message, 'success')
-            .then(() => navigate('/admin/service'))
+            .then(() => navigate('/admin/services'))
         } else {
           swal('Failed', res.data.message, 'error')
           console.log(res.data.e)

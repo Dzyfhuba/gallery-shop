@@ -11,7 +11,7 @@ const Articles = () => {
   const [articles, setArticles] = useState<ArticleInterface[]>([])
   useEffect(() => {
     (async () => {
-      const data = await axios.get(Hosts.main + '/article')
+      const data = await axios.get(Hosts.main + '/articles')
         .then(res => res.data.data)
         .then(data => {
           return data.map((item:ArticleInterface) => {

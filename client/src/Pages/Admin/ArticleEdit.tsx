@@ -29,7 +29,7 @@ const ArticleEdit = (props: Props) => {
           title: string,
           id: number
           images: string
-      } = await axios.get(Hosts.main + '/article/' + slug + '/edit')
+      } = await axios.get(Hosts.main + '/articles/' + slug + '/edit')
         .then(res => res.data.data.article)
         .catch(err => console.error(err))
       console.log(res);
@@ -60,11 +60,11 @@ const ArticleEdit = (props: Props) => {
       content: markdownValue
     }
 
-    axios.put(`${Hosts.main}/article`, data)
+    axios.put(`${Hosts.main}/articles`, data)
       .then(res => {
         if (!res.data.error) {
           swal('Success', res.data.message, 'success')
-            .then(() => navigate('/admin/article'))
+            .then(() => navigate('/admin/articles'))
         } else {
           swal('Failed', res.data.message, 'error')
           console.log(res.data.e)

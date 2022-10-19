@@ -21,7 +21,7 @@ const ArticleShow = (props:Props) => {
   const {slug} = useParams()
 	
   useEffect(() => {
-    axios.get(`${Hosts.main}/article/${slug}`)
+    axios.get(`${Hosts.main}/articles/${slug}`)
       .then(res => {
         setIsLoading(false)
         setArticle(res.data.data)

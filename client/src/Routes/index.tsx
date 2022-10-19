@@ -18,20 +18,20 @@ const index = () => {
         <Route path={'/register'} element={<Register/>} />
         <Route path={'/logout'} element={<Logout />} />
 
-        <Route path={'/service'} element={<Service />} />
-        <Route path={'/article'} element={<Article/>} />
+        <Route path={'/services'} element={<Service />} />
+        <Route path={'/articles'} element={<Article/>} />
         <Route path={'/about'} element={<About/>} />
         <Route path={'/admin'} element={<AdminService />} />
-        <Route path={'/admin/service'} element={<AdminService />} />
-        <Route path={'/admin/service/create'} element={<AdminServiceCreate />} />
-        <Route path={'/admin/article'} element={<AdminArticle />} />
-        <Route path={'/admin/article/create'} element={<AdminArticleCreate />} />
+        <Route path={'/admin/services'} element={<AdminService />} />
+        <Route path={'/admin/services/create'} element={<AdminServiceCreate />} />
+        <Route path={'/admin/articles'} element={<AdminArticle />} />
+        <Route path={'/admin/articles/create'} element={<AdminArticleCreate />} />
         <Route path={'/admin/about'} element={<AdminAbout />} />
 
-        <Route path={'service/:slug'} element={<ServiceShow />} />
-        <Route path={'service/:slug/edit'} element={<ServiceEdit />} />
-        <Route path={'article/:slug'} element={<ArticleShow />} />
-        <Route path={'article/:slug/edit'} element={<ArticleEdit />} />
+        <Route path={'services/:slug'} element={<ServiceShow />} />
+        <Route path={'services/:slug/edit'} element={<ServiceEdit />} />
+        <Route path={'articles/:slug'} element={<ArticleShow />} />
+        <Route path={'articles/:slug/edit'} element={<ArticleEdit />} />
       </Routes>
     </Router>
   )

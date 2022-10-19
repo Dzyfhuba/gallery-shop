@@ -12,10 +12,10 @@ const SidebarContainer = (props: Props) => {
   return (
     <Sidebar className='flex md:hidden fixed z-50 top-16 bg-white h-full' collapsedWidth='0' defaultCollapsed={true}>
       <Menu>
-        <MenuItem onClick={() => {navigate('/service')}}>
+        <MenuItem onClick={() => {navigate('/services')}}>
           Jasa
         </MenuItem>
-        <MenuItem onClick={() => {navigate('/article')}}>
+        <MenuItem onClick={() => {navigate('/articles')}}>
           Artikel
         </MenuItem>
         <MenuItem onClick={() => {navigate('/about')}}>
