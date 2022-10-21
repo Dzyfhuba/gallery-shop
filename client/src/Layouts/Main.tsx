@@ -22,7 +22,9 @@ const Main = (props: Props) => {
     <>
       <SidebarContainer show={sidebarVisibility} />
       <Navbar menuEvent={menuOnClick} />
-      {props.children}
+      <main className='min-h-screen bg-base p-3'>
+        {props.children}
+      </main>
     </>
   )
 }

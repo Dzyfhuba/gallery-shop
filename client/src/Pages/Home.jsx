@@ -4,18 +4,15 @@ import PropTypes from 'prop-types'
 import Main from '../Layouts/Main.tsx'
 
 const Home = props => {
-	return (
-		<Main>
-			<main className='min-h-screen bg-primary'>
-				asd
-			</main>
-			
-		</Main>
-	)
+  return (
+    <Main>
+		Home
+    </Main>
+  )
 }
 
 Home.propTypes = {
-	auth: PropTypes.any
+  auth: PropTypes.any
 }
 
 export default Home

@@ -46,7 +46,7 @@ const Navbar = (props: Props) => {
   }
 	
   return (
-    <nav className='h-16 py-1 px-2 md:px-8 flex md:justify-between sticky top-0 w-full bg-secondary text-neutral-100'>
+    <nav className='h-16 py-1 px-2 md:px-8 flex md:justify-between sticky top-0 w-full bg-base shadow-md'>
       <Button onClick={props.menuEvent} className={`block md:hidden`}>
         <span className="material-symbols-rounded">
 					menu

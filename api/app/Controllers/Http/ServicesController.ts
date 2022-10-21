@@ -42,20 +42,23 @@ export default class ServicesController {
     }
   }
 
-  public async store ({request, response}) {
+  public async store ({request, response}:HttpContextContract) {
     try {
       const data = request.body()
+      const files = request.file('images')
 
-      data.images = JSON.stringify(data.images)
-      data.content = JSON.stringify(data.content)
+      // data.images = JSON.stringify()
 
-      const service = await Service.create(data)
+      // const service = await Service.create(data)
 
       return response.send({
         error: false,
         status: 'success',
         message: 'Article has been added',
-        data: service,
+        data: {
+          data,
+          files,
+        },
       })
     } catch (error) {
       return response.send({

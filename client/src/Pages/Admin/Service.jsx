@@ -57,53 +57,51 @@ const Service = props => {
 
   return (
     <Admin>
-      <main className='pt-4 min-h-screen bg-primary md:px-24 px-4'>
-        <h1 className='text-4xl font-black mb-3'>Admin: Service Page</h1>
-        <ButtonAnchor to={'/admin/services/create'} className='mb-3'>Add New Service</ButtonAnchor>
-        <div className="overflow-x-scroll">
-          {isLoading || !services.length ? '' : (
-            <table className='w-full table border border-neutral-900 border-separate'>
-              <colgroup>
-                <col className='w-full'/>
-                <col className='inline-flex'/>
-                <col />
-                <col />
-                <col />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th className='border border-neutral-900 p-3'>Judul</th>
-                  <th className='border border-neutral-900 p-3'>Terakhir Disunting</th>
-                  <th className='border border-neutral-900 p-3'>Open</th>
-                  <th className='border border-neutral-900 p-3'>Edit</th>
-                  <th className='border border-neutral-900 p-3'>Delete</th>
+      <h1 className='text-4xl font-black mb-3'>Admin: Service Page</h1>
+      <ButtonAnchor level='primary' to={'/admin/services/create'} className='mb-3'>Add New Service</ButtonAnchor>
+      <div className="overflow-x-scroll">
+        {isLoading || !services.length ? '' : (
+          <table className='w-full table border border-neutral-900 border-separate'>
+            <colgroup>
+              <col className='w-full'/>
+              <col className='inline-flex'/>
+              <col />
+              <col />
+              <col />
+            </colgroup>
+            <thead>
+              <tr>
+                <th className='border border-neutral-900 p-3'>Judul</th>
+                <th className='border border-neutral-900 p-3'>Terakhir Disunting</th>
+                <th className='border border-neutral-900 p-3'>Open</th>
+                <th className='border border-neutral-900 p-3'>Edit</th>
+                <th className='border border-neutral-900 p-3'>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {services.map(service => (
+                <tr key={service.id}>
+                  <td className='border border-neutral-900 p-3'>
+                    {service.title}
+                  </td>
+                  <td className='border border-neutral-900 p-3'>
+                    {service.updated_at}
+                  </td>
+                  <td className='border border-neutral-900 p-3'>
+                    <ButtonAnchor to={`/services/${service.slug}`}>Open</ButtonAnchor>
+                  </td>
+                  <td className='border border-neutral-900 p-3'>
+                    <ButtonAnchor to={`/services/${service.slug}/edit`}>Edit</ButtonAnchor>
+                  </td>
+                  <td className='border border-neutral-900 p-3'>
+                    <Button className='w-full bg-ternary' onClick={() => deleteEvent(service.id)}>Delete</Button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {services.map(service => (
-                  <tr key={service.id}>
-                    <td className='border border-neutral-900 p-3'>
-                      {service.title}
-                    </td>
-                    <td className='border border-neutral-900 p-3'>
-                      {service.updated_at}
-                    </td>
-                    <td className='border border-neutral-900 p-3'>
-                      <ButtonAnchor to={`/services/${service.slug}`}>Open</ButtonAnchor>
-                    </td>
-                    <td className='border border-neutral-900 p-3'>
-                      <ButtonAnchor to={`/services/${service.slug}/edit`}>Edit</ButtonAnchor>
-                    </td>
-                    <td className='border border-neutral-900 p-3'>
-                      <Button className='w-full bg-ternary' onClick={() => deleteEvent(service.id)}>Delete</Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-      </main>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </Admin>
   )
 }

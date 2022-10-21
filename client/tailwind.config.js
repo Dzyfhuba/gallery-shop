@@ -7,10 +7,13 @@ module.exports = {
   important: true,
   theme: {
     extend: {
-      backgroundColor: {
-        'primary': '#EFEAD8',
-        'secondary': '#5F7161',
-        'ternary': '#6D8B74'
+      colors: {
+        'base': '#EFEAD8',
+        'primary': '#0F0',
+        'primary-reverse': '#FF00FF',
+        'secondary': '#0080FF',
+        'secondary-reverse': '#FF8000'
+
       }
     },
   },

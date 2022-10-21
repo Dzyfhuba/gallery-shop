@@ -17,7 +17,9 @@ const Admin = (props: Props) => {
       <header className='sticky top-0'>
         <AdminNavbar />
       </header>
-      {props.children}
+      <main className='min-h-screen bg-base p-3'>
+        {props.children}
+      </main>
     </div>
   )
 }
