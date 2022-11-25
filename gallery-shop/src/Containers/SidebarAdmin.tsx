@@ -4,7 +4,7 @@ import { MdClose } from 'react-icons/md'
 
 type Props = {}
 
-const Sidebar = (props: Props) => {
+const SidebarAdmin = (props: Props) => {
   const { collapseSidebar, collapsed } = useProSidebar()
   return (
     <>
@@ -13,7 +13,6 @@ const Sidebar = (props: Props) => {
           <MenuItem onClick={() => collapseSidebar()} className={'text-center'}>
             <MdClose className='mx-auto text-2xl' />
           </MenuItem>
-          <MenuItem>Home</MenuItem>
           <MenuItem>Services</MenuItem>
           <MenuItem>Articles</MenuItem>
           <MenuItem>About</MenuItem>
@@ -24,4 +23,4 @@ const Sidebar = (props: Props) => {
   )
 }
 
-export default Sidebar
+export default SidebarAdmin

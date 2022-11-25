@@ -27,11 +27,11 @@ class Button extends Component<Props> {
     const {type, className, level, children, ...x} = this.props
     if (level === 'secondary') {
       return (
-        <button type={type} className={`px-5 py-2.5 bg-transparent text-black hover:bg-primary border border-yellow-500 transition-colors duration-300 ${className}`} {...x}>{children}</button>
+        <button type={type} className={`px-5 py-2.5 rounded bg-transparent text-black hover:bg-primary border border-primary transition-colors duration-300 ${className}`} {...x}>{children}</button>
       )
     } else if (level === 'primary') {
       return (
-        <button type={type} className={`px-5 py-2.5 bg-primary text-black border-yellow-500 hover:bg-transparent border hover:border-5 transition-colors duration-300 ${className}`} {...x}>{children}</button>
+        <button type={type} className={`px-5 py-2.5 rounded bg-primary text-black border-primary hover:bg-transparent border hover:border-5 transition-colors duration-300 ${className}`} {...x}>{children}</button>
       )
     }
     return (

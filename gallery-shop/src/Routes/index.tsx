@@ -7,6 +7,8 @@ import Services from '../Pages/Services'
 import AdminServices from '../Pages/Admin/Services'
 import AdminArticles from '../Pages/Admin/Articles'
 import AdminAbout from '../Pages/Admin/About'
+import Login from '../Pages/Authentication/Login'
+import Register from '../Pages/Authentication/Register'
 
 type Props = {}
 
@@ -22,6 +24,9 @@ const index = (props: Props) => {
         <Route path='/admin/services' element={<AdminServices />} />
         <Route path='/admin/articles' element={<AdminArticles />} />
         <Route path='/admin/about' element={<AdminAbout />} />
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </BrowserRouter>
   )

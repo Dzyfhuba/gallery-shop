@@ -1,10 +1,13 @@
 import React from 'react'
+import Admin from '../../Layouts/Admin'
 
 type Props = {}
 
 const Articles = (props: Props) => {
   return (
-    <div>Articles</div>
+    <Admin>
+      Articles
+    </Admin>
   )
 }
 
